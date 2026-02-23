@@ -4,12 +4,12 @@
 #include <array>
 #include <string>
 #include <fstream> //for reading file
+#include <cstdlib> //for  atof
 using namespace std;
 
 const int RUNNERS = 30;
 
 void finTimes(array<double, RUNNERS>&);
-void foutTimes(array<double, RUNNERS>&);
 void coutTimes(array<double, RUNNERS>&);
 
 int main()
@@ -26,22 +26,22 @@ int main()
 	cout << "6. Max: " << *max_element(times.begin(), times.end()) << endl; //find max
 	cout << "7. Min: " << *min_element(times.begin(), times.end()) << endl; //find min
 	
-	cout << "8. Find 11.12s: ";
+	cout << "8. Find 11.12s: "; //finds target index + 1 to account for offset
 	double target = 11.12;
 	array<double, RUNNERS>::iterator it;
 	it = find(times.begin(), times.end(), target);
 	if (it != times.end()) {
-		cout << it - times.begin() << endl;
+		cout << it - times.begin() + 1 << endl; 
 	}
 	else {
 		cout << "Not found." << endl;
 	}
 
-	cout << "9. Sort: " << endl;
+	cout << "9. Sort: " << endl; //sorts times least to greatest
 	sort(times.begin(), times.end());
 	coutTimes(times);
 
-	cout << "10. Reverse Sort: " << endl;
+	cout << "10. Reverse Sort: " << endl; //reverse sort greatest to least
 	sort(times.rbegin(), times.rend());
 	coutTimes(times);
 
@@ -69,6 +69,10 @@ void finTimes(array<double, RUNNERS>& times) {
 
 void coutTimes(array<double, RUNNERS>& times) {
 	for (int i = 0; i < RUNNERS; i++) {
-		cout << i + 1 << ". " << times[i] << endl;
+		cout << i + 1 << ". " << times[i] << "   ";
+
+		if ((i + 1) % 10 == 0) {
+			cout << endl;
+		}
 	}
 }
