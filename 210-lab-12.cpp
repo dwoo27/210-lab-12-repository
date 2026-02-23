@@ -17,13 +17,34 @@ int main()
 	array<double, RUNNERS> times; //creates array for runners' 100m dash times
 	finTimes(times); //populates array from txt file
 
-	cout << "1. # of times: " << times.size() << endl;
+	cout << "1. # of times: " << times.size() << endl; //showcase variety of functions
 	cout << "2. Values: " << endl;
 	coutTimes(times); //output all times
-	cout << "3. Front: " << times.front() << endl;
-	cout << "4. Back: " << times.back() << endl;
-	cout << "5. Empty?: " << (times.empty() == 0 ? "False" : "True") << endl;
+	cout << "3. Front: " << times.front() << endl; //first in array
+	cout << "4. Back: " << times.back() << endl; //last in array
+	cout << "5. Empty?: " << (times.empty() == 0 ? "False" : "True") << endl; //check empty
+	cout << "6. Max: " << *max_element(times.begin(), times.end()) << endl; //find max
+	cout << "7. Min: " << *min_element(times.begin(), times.end()) << endl; //find min
 	
+	cout << "8. Find 11.12s: ";
+	double target = 11.12;
+	array<double, RUNNERS>::iterator it;
+	it = find(times.begin(), times.end(), target);
+	if (it != times.end()) {
+		cout << it - times.begin() << endl;
+	}
+	else {
+		cout << "Not found." << endl;
+	}
+
+	cout << "9. Sort: " << endl;
+	sort(times.begin(), times.end());
+	coutTimes(times);
+
+	cout << "10. Reverse Sort: " << endl;
+	sort(times.rbegin(), times.rend());
+	coutTimes(times);
+
 
 
 }
